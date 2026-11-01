@@ -1,6 +1,6 @@
 import { Card } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import { useProductStore } from '../store/useProductStore.jsx'
+import { useProductStore } from './useProductStore.jsx'
 
 export default function ProductCard({ product }) {
   const navigate = useNavigate()

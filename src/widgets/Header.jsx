@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import { useProductStore } from '../store/useProductStore.jsx'
+import { useProductStore } from '../entities/useProductStore.jsx'
 
 function Header() {
     const favoriteCount = useProductStore((state) => state.favorites.length)

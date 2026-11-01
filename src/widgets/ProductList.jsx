@@ -1,4 +1,4 @@
-import ProductCard from './ProductCard'
+import ProductCard from '../entities/ProductCard.jsx'
 
 export default function ProductsList({ products = [] }) {
   if (products.length === 0) {

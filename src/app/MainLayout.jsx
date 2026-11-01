@@ -1,6 +1,6 @@
-import { Link, Outlet, useNavigation } from 'react-router-dom';
-import Loader from '../components/Loader';
-import Header from '../components/Header';
+import { Link, Outlet, useNavigation } from 'react-router-dom'
+import Loader from '../shared/Loader.jsx'
+import Header from '../widgets/Header.jsx'
 
 export default function MainLayout() {
   const navigation = useNavigation();

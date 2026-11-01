@@ -1,7 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Link, useNavigate } from 'react-router-dom'
-import { createProduct, getCategories, isOwnedProduct, OWNER_PREFIX, rememberOwnedProduct, updateProduct } from '../api/api'
+import {
+  createProduct,
+  getCategories,
+  isOwnedProduct,
+  OWNER_PREFIX,
+  rememberOwnedProduct,
+  updateProduct,
+} from '../shared/api/api.js'
 
 export default function ProductForm({ product, editing = false }) {
     const navigate = useNavigate()

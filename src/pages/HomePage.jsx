@@ -1,9 +1,9 @@
 import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { getCategories, getProducts } from '../api/api'
-import Loader from '../components/Loader'
-import ProductFilters from '../components/ProductFilters'
-import ProductsList from '../components/ProductsList'
+import { getCategories, getProducts } from '../shared/api/api.js'
+import Loader from '../shared/Loader.jsx'
+import ProductFilters from '../features/ProductFilters.jsx'
+import ProductsList from '../widgets/ProductList.jsx'
 
 export default function HomePage() {
     const [params, setParams] = useSearchParams()

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useProductStore } from '../store/useProductStore.jsx'
+import { useProductStore } from '../entities/useProductStore.jsx'
 
 export default function CartPage() {
     const cart = useProductStore((state) => state.cart)

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useProductStore } from '../store/useProductStore.jsx'
-import ProductsList from '../components/ProductsList'
+import { useProductStore } from '../entities/useProductStore.jsx'
+import ProductsList from '../widgets/ProductList.jsx'
 
 export default function FavoritesPage() {
   const favorites = useProductStore((state) => state.favorites)
