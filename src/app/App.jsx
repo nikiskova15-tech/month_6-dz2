@@ -22,14 +22,3 @@ export default function App() {
 
 // api, components, hooks, pages, store, types, utils
 // Подходит для маленьких проектов (до 10-15 экранов), прототипов, учебных проектов
-
-//
-
-// FSD - Feature Sliced Design
-
-// app - Запуск приложения: провайдеры, роутер, глобальные стили
-// pages - Страницы целиком: CatalogPage, ProductPage, LoginPage
-// widgets - Крупные самостоятельные блоки: Header, Sidebar, ProductList,
-// features - Действия пользователя, которые приносят пользу: add-to-cart, auth-by-email, search-products
-// entities - Бизнес сущности: product, user, cart
-// shared - Переиспользуемое, не связанное с бизнесом: Button, Input
