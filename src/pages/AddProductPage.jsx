@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query'
-import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import { getProduct, isOwnedProduct } from '../shared/api/api.js'
 import Loader from '../shared/Loader.jsx'
