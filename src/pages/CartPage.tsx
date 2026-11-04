@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useProductStore } from '../entities/useProductStore.jsx'
+import { useProductStore } from '../entities/useProductStore.js'
 
 export default function CartPage() {
     const cart = useProductStore((state) => state.cart)
@@ -50,11 +50,11 @@ export default function CartPage() {
                         ))}
                     </div>
 
-                        <div >
-                            <span>Итого</span>
-                            <b>{(total + (total > 150 ? 0 : 12))}</b>
-                        </div>
-                    
+                    <div >
+                        <span>Итого</span>
+                        <b>{(total + (total > 150 ? 0 : 12))}</b>
+                    </div>
+
                 </div>
             ) : (
                 <div>

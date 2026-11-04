@@ -1,14 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
-  deleteProduct,
-  getProduct,
-  getProducts,
-  isOwnedProduct,
+    deleteProduct,
+    getProduct,
+    getProducts,
+    isOwnedProduct,
 } from '../shared/api/api.js'
-import Loader from '../shared/Loader.jsx'
-import ProductsList from '../widgets/ProductList.jsx'
-import { useProductStore } from '../entities/useProductStore.jsx'
+import Loader from '../shared/Loader.js'
+import ProductsList from '../widgets/ProductList.js'
+import { useProductStore } from '../entities/useProductStore.js'
 
 const money = (value) => new Intl.NumberFormat('ru-RU',
     { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Number(value) || 0)

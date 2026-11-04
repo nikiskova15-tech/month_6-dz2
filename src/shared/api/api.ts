@@ -18,7 +18,7 @@ export const getProducts = async ({ q, category, sort, order }) => {
 }
 
 export const createProduct = (product) => api.post('/products', product).then((r) => r.data)
-export const replaceProduct = ({ id, ...product }) => api.put(`/products/${id}`, product).then((r) => r.data)
+export const replaceProduct = ({ id, ...product: object }) => api.put(`/products/${id}`, product).then((r) => r.data)
 export const patchProduct = ({ id, ...changes }) => api.patch(`/products/${id}`, changes).then((r) => r.data)
 
 export const updateProduct = async ({ id, changes }) => {
@@ -26,7 +26,7 @@ export const updateProduct = async ({ id, changes }) => {
   return data;
 }
 
-export async function getProduct(id) {
+export async function getProduct(id: number) {
   const { data } = await api.get(`/products/${id}`)
   return data
 }
@@ -36,7 +36,7 @@ export async function getCategories() {
   return Array.isArray(data) ? data : []
 }
 
-export async function deleteProduct(id) {
+export async function deleteProduct(id: number) {
   const { data } = await api.delete(`/products/${id}`)
   return data
 }
@@ -44,7 +44,7 @@ export async function deleteProduct(id) {
 const OWNER_KEY = 'forme-owned-products'
 export const OWNER_PREFIX = 'Nikiskova'
 
-export function rememberOwnedProduct(id) {
+export function rememberOwnedProduct(id: number) {
   const ids = getOwnedProductIds()
   if (!ids.includes(id)) localStorage.setItem(OWNER_KEY, JSON.stringify([...ids, id]))
 }

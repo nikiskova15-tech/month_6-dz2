@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
-const sameProduct = (first, second) => String(first) === String(second)
+const sameProduct = (first: string, second: string) => first === second
 
 export const useProductStore = create(
   persist(

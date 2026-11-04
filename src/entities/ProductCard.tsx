@@ -1,8 +1,19 @@
 import { Card } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import { useProductStore } from './useProductStore.jsx'
+import { useProductStore } from './useProductStore'
 
-export default function ProductCard({ product }) {
+type Product = {
+  id: string | number
+  title: string
+  price: number
+  images?: string[]
+}
+
+type ProductCardProps = {
+  product: Product
+}
+
+export default function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate()
   const { cart, favorites, toggleFavorite, addToCart } = useProductStore()
 

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import { getProduct, isOwnedProduct } from '../shared/api/api.js'
-import Loader from '../shared/Loader.jsx'
+import Loader from '../shared/Loader.js'
 import ProductForm from '../features/ProductForm.jsx'
 
 export default function AddProductPage() {
