@@ -1,7 +1,3 @@
-type LoaderProps = {
-  label?: string
-}
-
-export default function Loader({ label = 'Загрузка...' }: LoaderProps) {
-  return <div>{label}</div>
+export default function Loader() {
+  return <div>Загрузка...</div>
 }
