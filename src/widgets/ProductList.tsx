@@ -1,10 +1,5 @@
 import ProductCard from '../entities/ProductCard'
-
-type Product = {
-  id: string | number
-  title: string
-  price: number
-}
+import type { Product } from '../shared/types'
 
 type ProductsListProps = {
   products?: Product[]

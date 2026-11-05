@@ -1,16 +1,21 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
-import { getProduct, isOwnedProduct } from '../shared/api/api.js'
-import Loader from '../shared/Loader.js'
-import ProductForm from '../features/ProductForm.jsx'
+import { getProduct, isOwnedProduct } from '../shared/api'
+import Loader from '../shared/Loader'
+import ProductForm from '../features/ProductForm'
+import type { Product } from '../shared/types'
 
 export default function AddProductPage() {
-    const { id } = useParams()
+    const { id } = useParams<{ id: string }>()
     const editing = Boolean(id)
 
-    const { data: product, isLoading, error, } = useQuery({
+    const {
+        data: product,
+        isLoading,
+        error,
+    } = useQuery<Product>({
         queryKey: ['product', id],
-        queryFn: () => getProduct(id),
+        queryFn: () => getProduct(id!),
         enabled: editing,
     })
 
@@ -19,32 +24,17 @@ export default function AddProductPage() {
     }
 
     if (editing && (error || !product)) {
-        return (
-            <h2>Не удалось загрузить товар.</h2>
-        )
+        return <h2>Не удалось загрузить товар.</h2>
     }
 
     if (editing && !isOwnedProduct(product)) {
-        return (
-            <section>
-                <div>
-                    Редактировать можно только свои товары.
-                </div>
-            </section>
-        )
+        return <section>Редактировать можно только свои товары.</section>
     }
 
     return (
         <section>
-            <div>
-                <p>
-                    {editing
-                        ? 'изменение'
-                        : 'новый товар'}
-                </p>
-                <h2>{editing ? 'Изменить товар' : 'Добавить товар'}</h2>
-            </div>
-
+            <p>{editing ? 'изменение' : 'новый товар'}</p>
+            <h2>{editing ? 'Изменить товар' : 'Добавить товар'}</h2>
             <ProductForm product={product} editing={editing} />
         </section>
     )

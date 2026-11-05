@@ -1,9 +1,25 @@
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
+import type { CartItem, Product } from '../shared/types'
 
-const sameProduct = (first: string, second: string) => first === second
+type ProductStore = {
+  favorites: Product[]
+  cart: CartItem[]
+  toggleFavorite: (product: Product) => void
+  removeFromFavorites: (id: Product['id']) => void
+  clearFavorites: () => void
+  addToCart: (product: Product) => void
+  toggleCart: (product: Product) => void
+  changeQuantity: (id: Product['id'], delta: number) => void
+  setQuantity: (id: Product['id'], quantity: number) => void
+  removeFromCart: (id: Product['id']) => void
+  clearCart: () => void
+}
 
-export const useProductStore = create(
+const sameProduct = (first: Product['id'], second: Product['id']) =>
+  String(first) === String(second)
+
+export const useProductStore = create<ProductStore>()(
   persist(
     (set) => ({
       favorites: [],
@@ -11,14 +27,20 @@ export const useProductStore = create(
 
       toggleFavorite: (product) =>
         set((state) => ({
-          favorites: state.favorites.some((item) => sameProduct(item.id, product.id))
-            ? state.favorites.filter((item) => !sameProduct(item.id, product.id))
+          favorites: state.favorites.some((item) =>
+            sameProduct(item.id, product.id),
+          )
+            ? state.favorites.filter(
+                (item) => !sameProduct(item.id, product.id),
+              )
             : [...state.favorites, product],
         })),
 
       removeFromFavorites: (id) =>
         set((state) => ({
-          favorites: state.favorites.filter((item) => !sameProduct(item.id, id)),
+          favorites: state.favorites.filter(
+            (item) => !sameProduct(item.id, id),
+          ),
         })),
 
       clearFavorites: () => set({ favorites: [] }),
@@ -27,10 +49,10 @@ export const useProductStore = create(
         set((state) => ({
           cart: state.cart.some((item) => sameProduct(item.id, product.id))
             ? state.cart.map((item) =>
-              sameProduct(item.id, product.id)
-                ? { ...item, quantity: item.quantity + 1 }
-                : item,
-            )
+                sameProduct(item.id, product.id)
+                  ? { ...item, quantity: item.quantity + 1 }
+                  : item,
+              )
             : [...state.cart, { ...product, quantity: 1 }],
         })),
 
@@ -52,11 +74,12 @@ export const useProductStore = create(
 
       setQuantity: (id, quantity) =>
         set((state) => ({
-          cart: quantity <= 0
-            ? state.cart.filter((item) => !sameProduct(item.id, id))
-            : state.cart.map((item) =>
-              sameProduct(item.id, id) ? { ...item, quantity } : item,
-            ),
+          cart:
+            quantity <= 0
+              ? state.cart.filter((item) => !sameProduct(item.id, id))
+              : state.cart.map((item) =>
+                  sameProduct(item.id, id) ? { ...item, quantity } : item,
+                ),
         })),
 
       removeFromCart: (id) =>
@@ -77,10 +100,16 @@ export const useProductStore = create(
   ),
 )
 
-export const selectFavoritesCount = (state) => state.favorites.length
-export const selectCartCount = (state) =>
+export const selectFavoritesCount = (state: ProductStore) =>
+  state.favorites.length
+
+export const selectCartCount = (state: ProductStore) =>
   state.cart.reduce((total, item) => total + item.quantity, 0)
-export const selectCartTotal = (state) =>
-  state.cart.reduce((total, item) => total + Number(item.price) * item.quantity, 0)
+
+export const selectCartTotal = (state: ProductStore) =>
+  state.cart.reduce(
+    (total, item) => total + Number(item.price) * item.quantity,
+    0,
+  )
 
 export default useProductStore

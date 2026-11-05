@@ -1,13 +1,7 @@
 import { Card } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { useProductStore } from './useProductStore'
-
-type Product = {
-  id: string | number
-  title: string
-  price: number
-  images?: string[]
-}
+import type { Product } from '../shared/types'
 
 type ProductCardProps = {
   product: Product
@@ -15,11 +9,13 @@ type ProductCardProps = {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate()
-  const { cart, favorites, toggleFavorite, addToCart } = useProductStore()
+  const cart = useProductStore((state) => state.cart)
+  const favorites = useProductStore((state) => state.favorites)
+  const toggleFavorite = useProductStore((state) => state.toggleFavorite)
+  const addToCart = useProductStore((state) => state.addToCart)
 
   const isInCart = cart.some((item) => item.id === product.id)
   const isFavorite = favorites.some((item) => item.id === product.id)
-
   const image = product.images?.find(
     (url) => typeof url === 'string' && url.startsWith('http'),
   )
@@ -30,7 +26,6 @@ export default function ProductCard({ product }: ProductCardProps) {
       style={{ cursor: 'pointer' }}
     >
       {image && <img src={image} alt={product.title} loading="lazy" />}
-
       <h3>{product.title}</h3>
       <span>{product.price} $</span>
 

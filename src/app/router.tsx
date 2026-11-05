@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
-import MainLayout from './MainLayout.jsx'
-import HomePage from '../pages/HomePage.jsx'
-import ProductPage from '../pages/ProductPage.jsx'
-import FavoritesPage from '../pages/FavoritesPage.jsx'
-import CartPage from '../pages/CartPage.jsx'
-import AddProductPage from '../pages/AddProductPage.jsx'
-import NotFoundPage from '../pages/NotFoundPage.jsx'
+import MainLayout from './MainLayout'
+import HomePage from '../pages/HomePage'
+import ProductPage from '../pages/ProductPage'
+import FavoritesPage from '../pages/FavoritesPage'
+import CartPage from '../pages/CartPage'
+import AddProductPage from '../pages/AddProductPage'
+import NotFoundPage from '../pages/NotFoundPage'
 
 const router = createBrowserRouter([
   {

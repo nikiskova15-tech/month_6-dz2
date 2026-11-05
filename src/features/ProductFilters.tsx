@@ -1,9 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
-
-type Category = {
-  id: string | number
-  name: string
-}
+import type { Category } from '../shared/types'
 
 type ProductFiltersProps = {
   categories?: Category[]
@@ -14,18 +10,17 @@ export default function ProductFilters({
 }: ProductFiltersProps) {
   const [params, setParams] = useSearchParams()
 
-  const setFilter = (key: string, value: string) =>
+  const setFilter = (key: string, value: string) => {
     setParams(
       (previous) => {
         const next = new URLSearchParams(previous)
-
         value ? next.set(key, value) : next.delete(key)
         if (key !== 'page') next.delete('page')
-
         return next
       },
       { replace: true },
     )
+  }
 
   return (
     <div>
@@ -60,6 +55,7 @@ export default function ProductFilters({
           value={params.get('price_min') || ''}
           onChange={(event) => setFilter('price_min', event.target.value)}
         />
+        <span>—</span>
         <input
           type="number"
           min="0"
