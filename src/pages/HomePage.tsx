@@ -24,7 +24,7 @@ export default function HomePage() {
         price_min: min || undefined,
         price_max: max || undefined,
         sortBy: sort.startsWith('price') ? 'price' : 'id',
-        order: sort === 'price-asc' ? 'ASC' : 'DESC',
+        order: sort === 'price-asc' ? 'asc' : 'desc',
     }
 
     const { data: categories = [] } = useQuery({
